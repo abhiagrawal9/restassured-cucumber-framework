@@ -1,0 +1,47 @@
+Request method:	POST
+Request URI:	https://rahulshettyacademy.com/maps/api/place/add/json?key=qaclick123
+Proxy:			<none>
+Request params:	<none>
+Query params:	key=qaclick123
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "location": {
+        "lat": -38.383494,
+        "lng": 33.232333
+    },
+    "accuracy": 50,
+    "name": "Abhishek Agrawal House",
+    "phone_number": "+9876543210",
+    "address": "29, side layout, cohen 09",
+    "types": [
+        "beautiful home",
+        "home"
+    ],
+    "website": "https://www.google.com",
+    "language": "English"
+}
+HTTP/1.1 200 OK
+Date: Sat, 20 Jun 2020 12:20:20 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
+Content-Length: 194
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+
+{
+    "status": "OK",
+    "place_id": "dadc2b90fb58cb53d68dcfe698f760c1",
+    "scope": "APP",
+    "reference": "ac532f545b8387c8712d20901d4a09c1ac532f545b8387c8712d20901d4a09c1",
+    "id": "ac532f545b8387c8712d20901d4a09c1"
+}
