@@ -2,6 +2,7 @@
 
 ### Project
 target
+logging.txt
 lib
 selenium.log
 selenium.log.*
