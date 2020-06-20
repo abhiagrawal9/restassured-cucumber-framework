@@ -8,7 +8,7 @@ import pojo.Location;
 
 public class TestData {
 
-	public AddPlace getAddPlacePayload() {
+	public AddPlace getAddPlacePayload(String name, String language, String address) {
 		AddPlace addPlace = new AddPlace();
 
 		Location l = new Location();
@@ -17,9 +17,9 @@ public class TestData {
 		addPlace.setLocation(l);
 
 		addPlace.setAccuracy(50);
-		addPlace.setName("Abhishek Agrawal House");
+		addPlace.setName(name);
 		addPlace.setPhone_number("+9876543210");
-		addPlace.setAddress("29, side layout, cohen 09");
+		addPlace.setAddress(address);
 
 		List<String> types = new ArrayList<String>();
 		types.add("beautiful home");
@@ -27,7 +27,7 @@ public class TestData {
 		addPlace.setTypes(types);
 
 		addPlace.setWebsite("https://www.google.com");
-		addPlace.setLanguage("English");
+		addPlace.setLanguage(language);
 
 		return addPlace;
 	}

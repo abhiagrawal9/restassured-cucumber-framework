@@ -1,7 +1,6 @@
 package resources;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -13,18 +12,17 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
 public class Helper {
-	RequestSpecification req;
+	public static RequestSpecification req;
 	Properties prop;
 
 	public RequestSpecification requestSpecification() throws Exception {
-		PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
-		req = new RequestSpecBuilder()
-				.setBaseUri(getConfigProperties("baseURL"))
-				.addQueryParam("key", "qaclick123")
-				.setContentType(ContentType.JSON)
-				.addFilter(RequestLoggingFilter.logRequestTo(log))
-				.addFilter(ResponseLoggingFilter.logResponseTo(log))
-				.build();
+		if (req == null) {
+			PrintStream log = new PrintStream(new FileOutputStream("logging.txt"));
+			req = new RequestSpecBuilder().setBaseUri(getConfigProperties("baseURL")).addQueryParam("key", "qaclick123")
+					.setContentType(ContentType.JSON).addFilter(RequestLoggingFilter.logRequestTo(log))
+					.addFilter(ResponseLoggingFilter.logResponseTo(log)).build();
+			return req;
+		}
 		return req;
 	}
 

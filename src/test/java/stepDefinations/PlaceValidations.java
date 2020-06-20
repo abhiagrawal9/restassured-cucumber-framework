@@ -2,7 +2,6 @@ package stepDefinations;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
-import java.io.FileNotFoundException;
 import org.junit.runner.RunWith;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,6 +15,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import resources.TestData;
 import resources.Helper;
+import resources.Swagger;
 
 @RunWith(Cucumber.class)
 public class PlaceValidations extends Helper {
@@ -24,15 +24,23 @@ public class PlaceValidations extends Helper {
 	Response response;
 	TestData data = new TestData();
 
-	@Given("Add place payload")
-	public void add_place_payload() throws Exception {
-		reqSpec = given().spec(requestSpecification()).body(data.getAddPlacePayload());
+	@Given("Add place payload with {string} {string} {string}")
+	public void add_place_payload_with(String name, String lang, String address) throws Exception {
+		reqSpec = given().spec(requestSpecification()).body(data.getAddPlacePayload(name, lang, address));
 	}
 
-	@When("User calls {string} with post http request")
-	public void user_calls_with_post_http_request(String api) {
+	@When("User calls {string} with {string} http request")
+	public void user_calls_with_post_http_request(String api, String method) {
+
+		Swagger sw = Swagger.valueOf(api);
 		resSpec = new ResponseSpecBuilder().expectContentType(ContentType.JSON).build();
-		response = reqSpec.when().post("/maps/api/place/add/json").then().spec(resSpec).extract().response();
+
+		if (method.equalsIgnoreCase("post"))
+			response = reqSpec.when().post(sw.getAPI());
+		else if(method.equalsIgnoreCase("get"))
+			response = reqSpec.when().get(sw.getAPI());
+		else if(method.equalsIgnoreCase("delete"))
+			response = reqSpec.when().delete(sw.getAPI());
 	}
 
 	@Then("Api should get success with status code {int}")
