@@ -16,18 +16,18 @@ Body:
         "lng": 33.232333
     },
     "accuracy": 50,
-    "name": "Abhishek",
+    "name": "Sachin",
     "phone_number": "+9876543210",
-    "address": "silicon valley",
+    "address": "Bombay",
     "types": [
         "beautiful home",
         "home"
     ],
     "website": "https://www.google.com",
-    "language": "English"
+    "language": "Hindi"
 }
 HTTP/1.1 200 OK
-Date: Sat, 20 Jun 2020 17:07:14 GMT
+Date: Sat, 20 Jun 2020 19:59:11 GMT
 Server: Apache/2.4.18 (Ubuntu)
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: POST
@@ -40,8 +40,46 @@ Content-Type: application/json;charset=UTF-8
 
 {
     "status": "OK",
-    "place_id": "7e799b626fed7df70e8ce745202b04b9",
+    "place_id": "b5decf9fddb566f83c88af2cbb137d0c",
     "scope": "APP",
-    "reference": "b20df1952901476fe2a348afd0c40f00b20df1952901476fe2a348afd0c40f00",
-    "id": "b20df1952901476fe2a348afd0c40f00"
+    "reference": "8fc56731f0a8fd477ced95adca800ab08fc56731f0a8fd477ced95adca800ab0",
+    "id": "8fc56731f0a8fd477ced95adca800ab0"
+}
+Request method:	GET
+Request URI:	https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=b5decf9fddb566f83c88af2cbb137d0c
+Proxy:			<none>
+Request params:	<none>
+Query params:	key=qaclick123
+				place_id=b5decf9fddb566f83c88af2cbb137d0c
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json; charset=UTF-8
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Date: Sat, 20 Jun 2020 19:59:12 GMT
+Server: Apache/2.4.18 (Ubuntu)
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
+Access-Control-Max-Age: 3600
+Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With
+Content-Length: 228
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: application/json;charset=UTF-8
+
+{
+    "location": {
+        "latitude": "-38.383494",
+        "longitude": "33.232333"
+    },
+    "accuracy": "50",
+    "name": "Sachin",
+    "phone_number": "+9876543210",
+    "address": "Bombay",
+    "types": "beautiful home,home",
+    "website": "https://www.google.com",
+    "language": "Hindi"
 }

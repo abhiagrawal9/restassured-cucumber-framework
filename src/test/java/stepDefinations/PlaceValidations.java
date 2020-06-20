@@ -22,6 +22,8 @@ public class PlaceValidations extends Helper {
 	RequestSpecification reqSpec;
 	ResponseSpecification resSpec;
 	Response response;
+	Swagger sw;
+	static String placeId;
 	TestData data = new TestData();
 
 	@Given("Add place payload with {string} {string} {string}")
@@ -32,26 +34,40 @@ public class PlaceValidations extends Helper {
 	@When("User calls {string} with {string} http request")
 	public void user_calls_with_post_http_request(String api, String method) {
 
-		Swagger sw = Swagger.valueOf(api);
+		sw = Swagger.valueOf(api);
 		resSpec = new ResponseSpecBuilder().expectContentType(ContentType.JSON).build();
 
 		if (method.equalsIgnoreCase("post"))
 			response = reqSpec.when().post(sw.getAPI());
-		else if(method.equalsIgnoreCase("get"))
+		else if (method.equalsIgnoreCase("get"))
 			response = reqSpec.when().get(sw.getAPI());
-		else if(method.equalsIgnoreCase("delete"))
+		else if (method.equalsIgnoreCase("delete"))
 			response = reqSpec.when().delete(sw.getAPI());
 	}
 
 	@Then("Api should get success with status code {int}")
-	public void api_should_success_with_status_code(Integer statusCode) {
-		assertEquals((int) (statusCode), response.getStatusCode());
+	public void api_should_success_with_status_code(int statusCode) {
+		assertEquals(statusCode, response.getStatusCode());
 	}
 
 	@Then("{string} in response body is {string}")
 	public void in_response_body_is_OK(String key, String value) {
-		String result = response.asString();
-		JsonPath js = new JsonPath(result);
-		assertEquals(value, js.get(key));
+		String actualVal = getJsonPath(response, key);
+		assertEquals(value, actualVal);
+	}
+
+	@Then("verify that {string} created maps to {string} using {string}")
+	public void verify_that_created_maps_to_using(String place_id, String name, String api) throws Exception {
+		placeId = getJsonPath(response, place_id);
+		reqSpec = given().spec(requestSpecification()).queryParam(place_id, placeId);
+		user_calls_with_post_http_request(api, "GET");
+		String actualName = getJsonPath(response, "name");
+		assertEquals(name, actualName);
+	}
+	
+	@Given("DeletePlace payload")
+	public void deleteplace_payload() throws Exception {
+		reqSpec = given().spec(requestSpecification()).body(data.getDeletePlacePayload(placeId));
+	
 	}
 }

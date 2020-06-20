@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pojo.AddPlace;
+import pojo.DeletePlace;
 import pojo.Location;
 
 public class TestData {
@@ -30,5 +31,11 @@ public class TestData {
 		addPlace.setLanguage(language);
 
 		return addPlace;
+	}
+	
+	public DeletePlace getDeletePlacePayload(String placeID) {
+		DeletePlace delPlace = new DeletePlace();
+		delPlace.setPlace_id(placeID);
+		return delPlace;
 	}
 }
